@@ -8,7 +8,7 @@ BTRFS critical (device dm-1): corrupt leaf: root=1 block=17760886423552 slot=98,
 BTRFS error (device dm-1): block=17760886423552 read time tree block corruption detected
 
 
-## Reason
+## Solution
 Your original problem was not (only) a corrupted volume it is that the Synology implementation of btrfs uses flags (1ULL << 32), (1ULL << 33), and (1ULL << 34). To avoid the "invalid root flags" you have to use a kernel which DOES NOT include this change:
 https://github.com/torvalds/linux/commit/259ee7754b6793af8bdd77f9ca818bc41cfe9541
 
